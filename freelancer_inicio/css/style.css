@@ -1,0 +1,330 @@
+:root       /*Custome properties. La ventaja es que esto es una constante. Si quieres cambiar el color lo cambias aquí*/
+    {
+        --blanco:#ffffff;
+        --oscuro: #212121;
+        --primario: #ffC107;
+        --secundario: #0097a7;
+        --gris: #757575;
+        --grisClaro: #DFE9F3;
+    }
+
+/* Globales */
+html                            /* Estos selectores son obligatorios si se usan rem: html y body.*/
+    {                           /* Se adaptan a más navegadores y resoluciones*/
+        font-size: 62.5%;      
+        box-sizing: border-box;  /* 36. Calcula las dimensiones de las Box o Cajas. HACK para BoxModel*/
+        scroll-snap-type: y mandatory;    /*Para hacer scroll de arriba hacia abajo. ****SIEMPRE PONERLO!!****/
+    }
+
+    /**SCROLL SNAP**/
+    .servicios, .navegacion-principal, .formulario
+        {
+            scroll-snap-align: center;  /*Que se pare en cada una de las secciones siempre al hacer scroll*/
+            scroll-snap-stop: always;
+        }
+
+    *, *:before, *:after    /*El * selecciona todo antes y despues */
+        {
+            box-sizing: inherit;
+        }
+body
+{  
+    font-size: 16px;    
+    font-family: 'Krub', sans-serif;
+    background-image: linear-gradient(to top, var(--grisClaro) 0%, var(--blanco)100%);    /* Para crear degradado de fondo de pagina. De abajo hacia arriba se indica que color y porcentaje*/
+}
+/* 1rem = 10px*. Para ello hay que escribir el html y el body con las caracteristicas que se ven */
+
+.contenedor
+{
+    max-width: 120rem;
+    /*margin-top: 0;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: auto; */
+    margin: 0 auto /* 0 auto */
+    /*Estos son los parametros de arriba, derecha, abajo, izq. 
+    En sentido de las agujas del reloj*/
+}
+
+.boton      /* Reutilizado también para el botón del formulario*/
+{
+    background-color: var(--secundario);
+    color: var(--blanco);
+    padding: 1rem 3rem;
+    margin-top: 3.5rem;
+    font-size: 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: .5rem;
+    width: 90%;
+    text-align: center;
+    border: none;       /* Se lo quitamos al botón del formulario */
+}
+@media (min-width: 480px) 
+    {
+    .boton{width:auto;}
+    }
+
+.boton:hover
+{
+    cursor: pointer;
+}
+
+.sombra
+{
+    -webkit-box-shadow: 0px 5px 20px 1px rgba(112,112,112,0.54);
+    -moz-box-shadow: 0px 5px 20px 1px rgba(112,112,112,0.54);
+    box-shadow: 0px 5px 20px 1px rgba(112,112,112,0.54);
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 1rem;  /* Para redondear los bordes de botones o cajas*/
+}
+
+/* Tipografía */
+h1
+{
+    font-size: 3.8rem;
+}
+h2
+{
+    font-size: 2.8rem;
+}
+h3
+{
+    font-size: 1.8rem;
+}
+h1, h2, h3{text-align: center;}
+
+/* Títulos */
+.titulo span
+    {
+        font-size: 2rem;
+    }
+
+/** UTILIDADES */
+.w-sm-100              /* Botón Enviar del formulario */
+{
+    width: 100%;
+}
+@media (min-width: 768px) 
+{
+    .w-sm-100
+    {
+        width: auto;
+    }
+}
+.flex
+{
+    display: flex;
+}
+.alinear-derecha
+{
+    justify-content: flex-end;
+}
+
+
+/* Navegación principal */
+.nav-bg
+{
+    background-color: var(--secundario);
+}  
+
+.navegacion-principal
+{
+   display: flex;   /*Que los elementos se muestren uno detras del otro*/
+   flex-direction: column;
+   
+}
+@media (min-width: 768px)   /*Para tablet*/ 
+{
+    .navegacion-principal
+    {
+        flex-direction: row;
+        justify-content: space-between; /*Para distribuir el contenido en una barra nav por ejemplo
+                                        Separarlo equitativamente para que quede bonito*/
+    }
+}
+
+.navegacion-principal a
+{
+                            /* display: inline    Está por defecto para enlaces. Inline = misma línea*/
+    display: block;         /* display: block  los coloca uno debajo del otro*/
+    text-align: center;     /*Block se muestra en columna y ya no se usa justify-content, si no text-align */
+    color: var(--blanco);
+    text-decoration: none;  /* Para eliminar la linea de abajo del enlace */
+                            /* En vista de desarrollador puedes ver a tiempo real los diferentes tipos, por ejemplo line-through, que lo tacha*/
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 1rem;
+}
+
+.navegacion-principal a:hover
+{
+    background-color: var(--primario);
+    color: var(--oscuro);
+}
+
+.navegacion-principal a:visited
+{
+    color: var(--oscuro);
+}
+/* @media (min-width: 480px){}    
+Tamaños estándare: 480px(moviles), 768px(tablets), 1140px(laptop), 1400px(ordenadores pantallas grandes)*/
+
+
+/* Hero - Imagen*/
+.hero
+{
+    background-image: url(../img/hero.jpg);
+    background-repeat: no-repeat;   /* Que no se repita la imagen cuando esta acabe*/
+    background-size: cover;     /*Que cubra todo el hueco*/
+    height: 450px;
+    position: relative;  /*El padre siempre se posiciona de forma relativa para que el hijo se posicione de manera absoluta*/
+    margin-bottom: 2rem;
+}
+
+.contenido-hero /*Para el sombreado de la imagen*/
+{
+    position: absolute;
+    background-color: rgba(0,0,0,.6);  /*Version Antigua*/
+    /*background-color: rgb(0 0 0 70%)    Version Nueva aun no soportada*/
+    /* bottom: 0; top: 0; right: 0; left: 0; Una manera de seleccionar todo lo de dentro*/
+    width: 100%;    /*Alto y ancho es otra opción de coger todo el espacio */
+    height: 100%;
+
+    display: flex;          /*Para alinear el contenido dentro de la imagen tanto verticalmente como horizontal*/
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenido-hero h2,
+.contenido-hero p
+{
+    color: var(--blanco);
+}
+
+.contenido-hero .ubicacion
+{
+    display: flex;
+    align-items: flex-end;
+}
+
+/* SERVICIOS */
+@media (min-width: 768px) 
+{
+    .servicios
+    {
+        display: grid;      /* Defines columnas y filas como quieras. Más completo que flex que sólo permite 1 dimensión*/
+        grid-template-columns: repeat(3, 1fr); /*1fr = 1 fracción. Divide el 100% del espacio entre las columnas que se quieran. 
+                                        Esto sería lo mismo que poner:33.3% 33.3% 33.3%; Defines número de columas y sus tamaños.
+                                        Significa que repitas tres veces 1 fracción, es decir, divide el espacio que hay en 3 partes
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 33.3% 33.3% 33.3%;    Todas son lo mismo */
+        column-gap: 2rem;
+
+        /*grid-template-rows: 200px 800px;  Defines número de filas y sus tamaños*/
+        /* Versión corta pero compleja:
+        gird: 200px 800px / 300px 300px;    Primero las filas despues las columnas */
+    }
+}
+.servicio
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.servicio h3
+{
+    color: var(--secundario);
+    font-weight: normal;
+}
+.servicio p
+{
+    line-height: 2;
+    text-align: center;
+}
+.servicios .iconos
+{
+    height: 15rem;
+    width: 15rem;
+    background-color: var(--primario);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* FORMULARIO CONTACTO */
+.formulario
+{
+    background-color: var(--gris);
+    width: min(60rem, 100%);         /* Va a utilizar el valor más pequeño 60rem del 100%*/
+    margin: 0 auto;     /* Utilizarlo en formularios y cuando no haya un display flex y tiene un display block por defecto */
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.formulario fieldset
+{
+    border: none;       /* Le quitamos el borde por defecto que vienen en el formulario */
+}
+
+.formulario legend  /*El título del formulario*/
+{
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--primario);
+}
+@media (min-width: 768px) 
+{
+    .contenedor-campos
+        {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            grid-template-rows: auto auto 20rem;
+            column-gap: 1rem;
+        }
+        .campo:nth-child(3),     /* De todos los hijos 'campo' el 3 es el de CORREO. Se inicia desde 1 */
+        .campo:nth-child(4)
+        {
+            grid-column: 1 / 3;     /*Que el grid de esa columa vaya desde el 1 al 3 (todo el espacio)*/
+        }
+}
+
+.campo
+{
+    margin-bottom: 1rem;
+}
+.campo label
+{
+    color: var(--blanco);
+    font-weight: bold;
+    margin-bottom: .5rem;
+    display: block;
+}
+.campo textarea
+{
+    height: 20rem;
+}
+.input-text
+{
+    width: 100%;
+    border: none;
+    padding: 1.5rem;
+    border-radius: .5rem;
+}
+
+/** FOOTER **/
+.footer
+{
+    text-align: center;
+}
+
+
